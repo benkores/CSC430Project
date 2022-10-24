@@ -1,6 +1,6 @@
 # CSC430Project
 
-Connecting to database (FIRST TIME):
+Creating database:
 
 1) Complete all of step 1: https://db.apache.org/derby/papers/DerbyTut/install_software.html
 2) Launch database server with: java -jar "C:\Apache\db-derby-10.16.1.1-bin\lib\derbyrun.jar" server start -noSecurityManager
