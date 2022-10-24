@@ -11,5 +11,5 @@ Connecting to database after first time:
 1) Launch database server with: java -jar "C:\Apache\db-derby-10.16.1.1-bin\lib\derbyrun.jar" server start -noSecurityManager
 2) Run SQLConnect.Java
 
-
-If any issues with SQLConnect or Material GUI add all jars in C:\Apache\db-derby-10.16.1.1-bin\lib and CSC430Project\material to build path
+ 
+If any issues with SQLConnect or Material GUI add all jars in C:\Apache\db-derby-10.16.1.1-bin\lib and CSC430Project\material to build path in your IDE
