@@ -13,7 +13,7 @@ public class SQLConnect
     private static Connection conn = null;
     private static Statement stmt = null;
 
-    public static void main(String[] args)
+    public SQLConnect()
     {
         createConnection();
     }
@@ -33,7 +33,7 @@ public class SQLConnect
     }
     
     
-    private static void create(String query) {
+    public static void create(String query) {
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -42,12 +42,13 @@ public class SQLConnect
 		e.printStackTrace();
 	}  
     }
-    private static void insert(String query)
+    public static void insertAccount(String username, String password)
     {
         try
         {
             stmt = conn.createStatement();
-            stmt.execute(query);
+            int id = getNextID("ACCOUNTS");
+            stmt.execute("INSERT INTO ACCOUNTS VALUES(" + id + ",'" + username + "','" + password + "')");
             stmt.close();
         }
         catch (SQLException sqlExcept)
@@ -56,7 +57,57 @@ public class SQLConnect
         }
     }
     
-    private static ResultSet select(String query)
+    public static int getNextID(String table) {
+    	ResultSet results = null;
+    	int count = 1;
+    	try {
+    		stmt = conn.createStatement();
+    		results = stmt.executeQuery("SELECT ID FROM " + table);
+    		while (results.next()) {
+    			count++;
+    		}
+    		return count;
+    	} catch (SQLException ex) {
+    	}
+    	return count;
+    }
+    
+    public static boolean authenticateAccount(String username, String password) {
+    	ResultSet results = null;
+    	int count  = 1;
+    	try {
+    		stmt = conn.createStatement();
+    		results = stmt.executeQuery("SELECT ID FROM ACCOUNTS WHERE NAME = '" + username + "' AND PASSWORD = '" + password + "'");
+    		while (results.next()) {
+    			count++;
+    		}
+    	} catch (SQLException ex) {
+    	}
+    	if (count == 1) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    }
+    
+    public static boolean checkAccountExists(String username) {
+    	ResultSet results = null;
+    	int count  = 1;
+    	try {
+    		stmt = conn.createStatement();
+    		results = stmt.executeQuery("SELECT ID FROM ACCOUNTS WHERE NAME = '" + username + "'");
+    		while (results.next()) {
+    			count++;
+    		}
+    	} catch (SQLException ex) {
+    	}
+    	if (count == 1) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    }
+    public static ResultSet select(String query)
     {
     	ResultSet results = null;
         try
@@ -73,7 +124,7 @@ public class SQLConnect
         return results;
     }
     
-    private static void update(String query) {
+    public static void update(String query) {
     	try {
     		stmt = conn.createStatement();
     		stmt.executeQuery(query);
