@@ -3,17 +3,19 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
+
 public class AirlineApp {
-	
+
 	static SQLConnect db = new SQLConnect();
-	
-	public static void main (String[] args) {
+
+	public static void main(String[] args) {
 		checkLoginStatus();
 	}
-	
+
+	// This should be the User Login/Register GUI window (if user is not already logged,
+	// otherwise, skip to main window)
 	public static void checkLoginStatus() {
 		Scanner stdin = new Scanner(System.in);
-		//check if user is not already logged in
 		File login_auto = new File("login_username.txt");
 		if (!(login_auto.exists())) {
 			System.out.print("Enter username:");
@@ -27,13 +29,12 @@ public class AirlineApp {
 				if (exists == true) {
 					System.err.println("Account already exists!");
 					checkLoginStatus();
+				} else {
+					SQLConnect.insertAccount(username, password);
+					checkLoginStatus();
 				}
-					else {
-						SQLConnect.insertAccount(username,password);
-						checkLoginStatus();
-					}
 			} else if (option == 'l') {
-				boolean valid = SQLConnect.authenticateAccount(username,password);
+				boolean valid = SQLConnect.authenticateAccount(username, password);
 				if (!(valid)) {
 					System.err.println("Incorrect username/password!");
 					checkLoginStatus();
@@ -46,22 +47,10 @@ public class AirlineApp {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				new MainWindow(login_auto);
 			}
 		} else {
-			authenticate(login_auto);
+			new MainWindow(login_auto);
 		}
 	}
-	
-	public static void authenticate(File login_auto) {
-		try {
-			Scanner reader = new Scanner(login_auto);
-			String username = null;
-			while (reader.hasNextLine()) {
-				username = reader.nextLine();
-			}
-			System.out.println("Welcome, " + username);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	}
+}
