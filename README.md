@@ -12,7 +12,7 @@ Connecting to database after first time:
 2) Start ij with: ```java -jar "C:\Apache\db-derby-10.16.1.1-bin\lib\derbyrun.jar" ij```
 3) Connect to teamviper database with: ```CONNECT 'jdbc:derby://localhost:1527/my_database;user=teamviper;password=teamviper';```
 
-Make sure you execute all sql files in sql folder to create tables and insert example values before running the program!
+Make sure you execute all sql files in sql folder to create tables and insert example values AND you launch the database server before running the program!
 
 Shutdown database server:
 ```java -jar "C:\Apache\db-derby-10.16.1.1-bi\lib\derbyrun.jar" server shutdown```
