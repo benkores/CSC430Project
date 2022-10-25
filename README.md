@@ -17,4 +17,4 @@ Make sure you execute all sql files in sql folder to create tables and insert ex
 Shutdown database server:
 ```java -jar "C:\Apache\db-derby-10.16.1.1-bi\lib\derbyrun.jar" server shutdown```
  
-If any issues with SQLConnect add all jars in C:\Apache\db-derby-10.16.1.1-bin\lib and CSC430Project\material to build path in your IDE
+If any issues with SQLConnect add all jars in C:\Apache\db-derby-10.16.1.1-bin\lib to build path in your IDE
