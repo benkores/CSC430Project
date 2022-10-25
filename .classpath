@@ -106,9 +106,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430-Project/material/material-ui-swing-1.1.4-rc1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430-Project/material/material-ui-swing-1.1.4-rc1-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430-Project/material/material-ui-swing-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430-Project/material/material-ui-swing-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/material/material-ui-swing-1.1.4-rc1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/material/material-ui-swing-1.1.4-rc1-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/material/material-ui-swing-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/material/material-ui-swing-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

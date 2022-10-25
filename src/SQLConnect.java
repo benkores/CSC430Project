@@ -15,7 +15,7 @@ public class SQLConnect
 
     public static void main(String[] args)
     {
-        createConnection(); 	  
+        createConnection();
     }
     
     private static void createConnection()
