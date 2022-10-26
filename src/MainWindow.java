@@ -18,6 +18,25 @@ public class MainWindow {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		showOptions();
 	}
+	
+	//part of above GUI window
+	public void showOptions() {
+		Scanner stdin = new Scanner(System.in);
+		int option = 0;
+		System.out.println("What would you like to so today? ");
+		System.out.println("1 - Search for and book a flight");
+		System.out.println("2 - View Boarding Passes");
+		System.out.print("Enter an option(1-2): ");
+		option = stdin.nextInt();
+		if (option == 1) {
+			new SearchFlights();
+		} else if (option == 2) {
+			new BoardingPass();
+		}
+	}
+	
+	
 
 }
