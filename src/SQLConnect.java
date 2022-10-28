@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.sql.ResultSetMetaData;
@@ -63,6 +64,7 @@ public class SQLConnect {
 			}
 			return count;
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 		return count;
 	}
@@ -78,6 +80,7 @@ public class SQLConnect {
 				count++;
 			}
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 		if (count == 1) {
 			return false;
@@ -96,6 +99,7 @@ public class SQLConnect {
 				count++;
 			}
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 		if (count == 1) {
 			return false;
@@ -117,51 +121,49 @@ public class SQLConnect {
 		return results;
 	}
 
-	public static String selectFromAirport() {
-		Scanner stdin = new Scanner(System.in);
+	public static ArrayList<ArrayList<String>> getFromAirports() {
 		ResultSet results = null;
-		String option = null;
+		ArrayList<ArrayList<String>> from_airports = new ArrayList<ArrayList<String>>();
+		ArrayList<String> airport;
 		try {
 			stmt = conn.createStatement();
 			results = stmt.executeQuery("SELECT ID, NAME FROM AIRPORTS");
-			int i = 1;
 			while (results.next()) {
-				System.out.println(i++ + " " + results.getString("id") + " - " + results.getString("name"));
+				airport = new ArrayList<String>();
+				airport.add(results.getString("id"));
+				airport.add(results.getString("name"));
+				from_airports.add(airport);
 			}
-			System.out.print("Enter 3-letter airport code: ");
-			option = stdin.nextLine();
-			return option.toUpperCase().replaceAll("\"", "");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return null;
+		return from_airports;
 	}
-
-	public static String selectToAirport(String from_airport) {
-		Scanner stdin = new Scanner(System.in);
+	
+	public static ArrayList<ArrayList<String>> getToAirports(String from_airport) {
 		ResultSet results = null;
-		String option = null;
+		ArrayList<ArrayList<String>> to_airports = new ArrayList<ArrayList<String>>();
+		ArrayList<String> airport;
 		try {
 			stmt = conn.createStatement();
 			results = stmt.executeQuery("SELECT ID, NAME FROM AIRPORTS WHERE ID != '" + from_airport + "'");
-			int i = 1;
 			while (results.next()) {
-				System.out.println(i++ + " " + results.getString("id") + " - " + results.getString("name"));
+				airport = new ArrayList<String>();
+				airport.add(results.getString("id"));
+				airport.add(results.getString("name"));
+				to_airports.add(airport);
 			}
-			System.out.print("Enter 3-letter airport code: ");
-			option = stdin.nextLine();
-			return option.toUpperCase().replaceAll("\"", "");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return null;
+		return to_airports;
 	}
-
-	public static int selectBooking(String from_airport, String to_airport, String departure_date) {
-		Scanner stdin = new Scanner(System.in);
+	
+	public static ArrayList<ArrayList<String>> getFlights(String from_airport, String to_airport, String departure_date) {
 		ResultSet results = null;
-		int flight_index = 0;
 		Date dep_date = null;
+		ArrayList<ArrayList<String>> flights = new ArrayList<ArrayList<String>>();
+		ArrayList<String> flight;
 		try {
 			dep_date = new SimpleDateFormat("MM/dd/yyyy").parse(departure_date);
 		} catch (ParseException e) {
@@ -172,35 +174,30 @@ public class SQLConnect {
 			stmt = conn.createStatement();
 			results = stmt.executeQuery("SELECT * FROM FLIGHTS WHERE DESTINATION_ID = '" + from_airport
 					+ "' AND ARRIVAL_ID = '" + to_airport + "' AND DEPARTURE_DATE = '" + dep_date_sql + "'");
-			int i = 1;
 			while (results.next()) {
-				System.out.println("\nFlight " + i++);
-				System.out.println(from_airport + " ---> " + to_airport);
-				System.out.println("Departs: " + departure_date + " " + results.getString("departure_time"));
-				System.out.println(
-						"Arrives: " + results.getString("arrival_date") + " " + results.getString("arrival_time"));
-				System.out.println("Gate: " + results.getString("gate"));
-				System.out.println("Terminal: " + results.getString("terminal"));
-				System.out.println("Boarding begins: " + results.getString("boarding_begins"));
-				System.out.println("Boarding ends: " + results.getString("boarding_ends"));
-				System.out.println("Number of seats: " + results.getString("number_of_first_class_seats")
-						+ " first-class seats, " + results.getString("number_of_business_class_seats")
-						+ " business-class seats, " + results.getString("number_of_economy_seats") + " economy seats");
-				System.out.println("First-class ticket price: $" + results.getString("first_cost"));
-				System.out.println("Business-class ticket price: $" + results.getString("business_cost"));
-				System.out.println("Economy ticket price: $" + results.getString("business_cost"));
-			}
-			if (i == 1) {
-				System.out.println("No flights found.");
-			} else {
-				System.out.print("Enter a flight option(1-" + (i - 1) + "): ");
-				flight_index = stdin.nextInt();
-				return flight_index;
+				flight = new ArrayList<String>();
+				flight.add(from_airport);
+				flight.add(to_airport);
+				flight.add(departure_date);
+				flight.add(results.getString("departure_time"));
+				flight.add(results.getString("arrival_date"));
+				flight.add(results.getString("arrival_time"));
+				flight.add(results.getString("gate"));
+				flight.add(results.getString("terminal"));
+				flight.add(results.getString("boarding_begins"));
+				flight.add(results.getString("boarding_ends"));
+				flight.add(results.getString("number_of_first_class_seats"));
+				flight.add(results.getString("number_of_business_class_seats"));
+				flight.add(results.getString("number_of_economy_seats"));
+				flight.add(results.getString("first_cost"));
+				flight.add(results.getString("business_cost"));
+				flight.add(results.getString("economy_cost"));
+				flights.add(flight);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return flight_index;
+		return flights;
 	}
 	
 	public static void update(String query) {
