@@ -28,12 +28,15 @@ public class MainWindow {
 		System.out.println("What would you like to so today? ");
 		System.out.println("1 - Search for and book a flight");
 		System.out.println("2 - View Boarding Passes");
-		System.out.print("Enter an option(1-2): ");
+		System.out.println("3 - Exit");
+		System.out.print("Enter an option(1-3): ");
 		option = stdin.nextInt();
 		if (option == 1) {
 			new SearchFlights();
 		} else if (option == 2) {
 			new BoardingPass();
+		} else {
+			SQLConnect.shutdown();
 		}
 	}
 	

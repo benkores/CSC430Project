@@ -6,9 +6,10 @@ import java.io.FileWriter;
 
 public class AirlineApp {
 
-	static SQLConnect db = new SQLConnect();
+
 
 	public static void main(String[] args) {
+		new SQLConnect();
 		checkLoginStatus();
 	}
 
