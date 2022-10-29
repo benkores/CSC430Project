@@ -122,10 +122,10 @@ public class BookFlight {
 		System.out.println("Select a seat: ");
 		ArrayList<ArrayList<String>> seats = SQLConnect.getFlightSeats(flight_id);
 		int i = 0;
-		while (i < seats.size()) {
-			System.out.println(seats.get(i).get(3) + " - " + seats.get(i).get(2));
-			i++;
-		}
+				while (i < seats.size()) {
+					System.out.println(seats.get(i).get(3) + " - " + seats.get(i).get(2));
+					i++;
+			}
 		System.out.println("Enter seat number and letter: ");
 		String seat = stdin.nextLine();
 		int seat_id = SQLConnect.getSeatID(flight_id, seat.replaceAll("\"", ""));
@@ -140,7 +140,6 @@ public class BookFlight {
 		System.out.println("Total Cost: $" + total_cost);
 		return ticket;
 	}
-
 	public void addBookings() {
 		int i = 0;
 		while (i < tickets.size()) {

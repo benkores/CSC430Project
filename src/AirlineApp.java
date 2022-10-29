@@ -48,10 +48,27 @@ public class AirlineApp {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				new MainWindow(login_auto);
+				new MainWindow(username);
 			}
 		} else {
-			new MainWindow(login_auto);
+			Scanner reader;
+			try {
+				reader = new Scanner(login_auto);
+				String username = null;
+				while (reader.hasNextLine()) {
+					username = reader.nextLine();
+				}
+				boolean exists = SQLConnect.checkAccountExists(username);
+				if (exists) {
+					new MainWindow(username);
+				} else {
+					reader.close();
+					login_auto.delete();
+					checkLoginStatus();
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

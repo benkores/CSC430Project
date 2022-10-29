@@ -27,7 +27,7 @@ public class SQLConnect {
 	private static void createConnection() {
 		try {
 			Runtime.getRuntime().exec("cmd /c start /min java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
-			TimeUnit.SECONDS.sleep(5);
+			TimeUnit.SECONDS.sleep(2);
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			conn = DriverManager.getConnection(dbURL);
 		} catch (Exception except) {
