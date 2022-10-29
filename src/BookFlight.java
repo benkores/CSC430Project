@@ -57,8 +57,6 @@ public class BookFlight {
 		Scanner stdin = new Scanner(System.in);
 		ArrayList<String> ticket;
 		char cont;
-		System.out.println("Enter quantity of tickets: ");
-		number_of_tickets = stdin.nextInt();
 		for (int i = 0; i < number_of_tickets; i++) {
 			System.out.println("Trip 2: Ticket " + (i + 1));
 			ticket = getTicketInfo(Integer.parseInt(second_flight.get(0)), second_flight);
