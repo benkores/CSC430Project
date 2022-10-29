@@ -24,8 +24,10 @@ public class MainWindow {
 	//part of above GUI window
 	public void showOptions() {
 		Scanner stdin = new Scanner(System.in);
-		int option = 0;
-		System.out.println("What would you like to so today? ");
+		int option;
+		while (true) {
+		option = 0;
+		System.out.println("What would you like to do today? ");
 		System.out.println("1 - Search for and book a flight");
 		System.out.println("2 - View Boarding Passes");
 		System.out.println("3 - Exit");
@@ -36,7 +38,8 @@ public class MainWindow {
 		} else if (option == 2) {
 			new BoardingPass();
 		} else {
-			SQLConnect.shutdown();
+			break;
+		}
 		}
 	}
 	
