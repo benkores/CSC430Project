@@ -16,8 +16,7 @@
 # double click on "Apache Derby Client"
 # click on tab "Extra Class Path"
 # click on "Add" button
-# browse to the lib folder under the derby-db installation folder
-# should be: C:\Users\<your-name-here>\Downloads\derby-db\lib
+# browse to Apache folder
 # select file "derbyclient.jar" then click on button "Open"
 # click on button "List Drivers"
 # the text box "Class Name" should automatically be populated
