@@ -4,4 +4,4 @@
    - Java JDK 17
    
 **Before running program for the first time:**
-Add Apache folder to build path in your IDE (classpath)
+Add all jar files in Apache folder to build path in your IDE (classpath)
