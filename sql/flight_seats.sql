@@ -5,7 +5,6 @@ CREATE TABLE FLIGHT_SEATS (
 	seat varchar(255),
 	seat_booked boolean
 );
-
 INSERT INTO FLIGHT_SEATS VALUES(1, 1, 'first', '1A', false);
 INSERT INTO FLIGHT_SEATS VALUES(1, 2, 'first', '1B', false);
 INSERT INTO FLIGHT_SEATS VALUES(1, 3, 'first', '1C', false);
@@ -1821,6 +1820,3 @@ INSERT INTO FLIGHT_SEATS VALUES(10, 177, 'economy', '30C', false);
 INSERT INTO FLIGHT_SEATS VALUES(10, 178, 'economy', '30D', false);
 INSERT INTO FLIGHT_SEATS VALUES(10, 179, 'economy', '30E', false);
 INSERT INTO FLIGHT_SEATS VALUES(10, 180, 'economy', '30F', false);
-
-
-

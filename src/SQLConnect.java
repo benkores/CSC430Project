@@ -22,12 +22,12 @@ public class SQLConnect {
 
 	public SQLConnect() {
 		createConnection();
-		executeSQLScripts();
+		//executeSQLScripts();
 	}
 
 	private static void createConnection() {
 		try {
-			Runtime.getRuntime().exec("cmd /k java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
+			//Runtime.getRuntime().exec("cmd /k java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			conn = DriverManager.getConnection(dbURL);
 		} catch (Exception except) {
@@ -35,22 +35,26 @@ public class SQLConnect {
 		}
 	}
 	
+	/* Known issues with below code, execute sql files in sql editor
 	private static void executeSQLScripts() {
 		ScriptRunner sr = new ScriptRunner(conn);
 		try {
 			Reader reader = new BufferedReader(new FileReader("sql/accounts.sql"));
 			sr.runScript(reader);
-			reader = new BufferedReader(new FileReader("sql/airports.sql"));
-			sr.runScript(reader);
-			reader = new BufferedReader(new FileReader("sql/flight_seats.sql"));
-			sr.runScript(reader);
-			reader = new BufferedReader(new FileReader("sql/flights.sql"));
-			sr.runScript(reader);
-			reader = new BufferedReader(new FileReader("sql/user_bookings.sql"));
-			sr.runScript(reader);
+			Reader reader2 = new BufferedReader(new FileReader("sql/airports.sql"));
+			sr.runScript(reader2);
+			Reader reader3 = new BufferedReader(new FileReader("sql/create_flight_seats.sql"));
+			sr.runScript(reader3);
+			Reader reader4 = new BufferedReader(new FileReader("sql/insert_flight_seats.sql"));
+			sr.runScript(reader4);
+			Reader reader5 = new BufferedReader(new FileReader("sql/flights.sql"));
+			sr.runScript(reader5);
+			Reader reader6 = new BufferedReader(new FileReader("sql/user_bookings.sql"));
+			sr.runScript(reader6);
 		} catch (FileNotFoundException ex) {
 		}
 	}
+	*/
 
 	public static void insertAccount(String username, String password) {
 		try {
