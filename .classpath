@@ -6,105 +6,34 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derby.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyclient.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_cs.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_de_DE.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_es.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_fr.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_hu.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_it.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_ja_JP.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_ko_KR.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_pl.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_pt_BR.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_ru.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_zh_CN.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyLocale_zh_TW.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbynet.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyoptionaltools.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyrun.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbyshared.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Apache/db-derby-10.16.1.1-bin/lib/derbytools.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/mybatis-3.5.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/asm-7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/cglib-3.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/javassist-3.29.2-GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/log4j-api-2.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/ognl-3.3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/reload4j-1.2.22.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/mybatis/lib/slf4j-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derby.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyclient.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_cs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_de_DE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_es.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_fr.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_hu.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_it.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_ja_JP.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_ko_KR.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_pl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_pt_BR.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_ru.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_zh_CN.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyLocale_zh_TW.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbynet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyoptionaltools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyrun.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbyshared.jar"/>
+	<classpathentry kind="lib" path="C:/Users/benko/OneDrive/Documents/CSC430Project/Apache/derbytools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

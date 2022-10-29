@@ -1,6 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,23 +13,42 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.sql.ResultSetMetaData;
+import org.apache.ibatis.jdbc.ScriptRunner;
 
 public class SQLConnect {
-	private static String dbURL = "jdbc:derby://localhost:1527/my_database;user=teamviper;password=teamviper";
+	private static String dbURL = "jdbc:derby://localhost:1527/my_database;create=true;user=teamviper;password=teamviper";
 	private static Connection conn = null;
 	private static Statement stmt = null;
 
 	public SQLConnect() {
 		createConnection();
+		executeSQLScripts();
 	}
 
 	private static void createConnection() {
 		try {
+			Runtime.getRuntime().exec("cmd /k java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			conn = DriverManager.getConnection(dbURL);
 		} catch (Exception except) {
 			except.printStackTrace();
+		}
+	}
+	
+	private static void executeSQLScripts() {
+		ScriptRunner sr = new ScriptRunner(conn);
+		try {
+			Reader reader = new BufferedReader(new FileReader("sql/accounts.sql"));
+			sr.runScript(reader);
+			reader = new BufferedReader(new FileReader("sql/airports.sql"));
+			sr.runScript(reader);
+			reader = new BufferedReader(new FileReader("sql/flight_seats.sql"));
+			sr.runScript(reader);
+			reader = new BufferedReader(new FileReader("sql/flights.sql"));
+			sr.runScript(reader);
+			reader = new BufferedReader(new FileReader("sql/user_bookings.sql"));
+			sr.runScript(reader);
+		} catch (FileNotFoundException ex) {
 		}
 	}
 
