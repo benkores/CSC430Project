@@ -1,19 +1,17 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLTransactionRollbackException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import org.apache.ibatis.jdbc.ScriptRunner;
+import java.util.concurrent.TimeUnit;
 
 public class SQLConnect {
 	private static String dbURL = "jdbc:derby://localhost:1527/my_database;create=true;user=teamviper;password=teamviper";
@@ -21,13 +19,15 @@ public class SQLConnect {
 	private static Statement stmt = null;
 
 	public SQLConnect() {
+		System.out.println("Loading...");
 		createConnection();
-		//executeSQLScripts();
+		executeSQLScripts();
 	}
 
 	private static void createConnection() {
 		try {
-			//Runtime.getRuntime().exec("cmd /k java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
+			Runtime.getRuntime().exec("cmd /c start /min java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
+			TimeUnit.SECONDS.sleep(5);
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			conn = DriverManager.getConnection(dbURL);
 		} catch (Exception except) {
@@ -35,26 +35,41 @@ public class SQLConnect {
 		}
 	}
 	
-	/* Known issues with below code, execute sql files in sql editor
-	private static void executeSQLScripts() {
-		ScriptRunner sr = new ScriptRunner(conn);
+	public static void executeSQLScripts() {
 		try {
-			Reader reader = new BufferedReader(new FileReader("sql/accounts.sql"));
-			sr.runScript(reader);
-			Reader reader2 = new BufferedReader(new FileReader("sql/airports.sql"));
-			sr.runScript(reader2);
-			Reader reader3 = new BufferedReader(new FileReader("sql/create_flight_seats.sql"));
-			sr.runScript(reader3);
-			Reader reader4 = new BufferedReader(new FileReader("sql/insert_flight_seats.sql"));
-			sr.runScript(reader4);
-			Reader reader5 = new BufferedReader(new FileReader("sql/flights.sql"));
-			sr.runScript(reader5);
-			Reader reader6 = new BufferedReader(new FileReader("sql/user_bookings.sql"));
-			sr.runScript(reader6);
-		} catch (FileNotFoundException ex) {
+		File file = new File("sql/accounts.sql");
+		Scanner reader = new Scanner(file);
+		while (reader.hasNextLine()) {
+			stmt = conn.createStatement();
+			stmt.execute(reader.nextLine());
+		}
+		file = new File("sql/airports.sql");
+		reader = new Scanner(file);
+		while (reader.hasNextLine()) {
+			stmt = conn.createStatement();
+			stmt.execute(reader.nextLine());
+		}
+		file = new File("sql/flights.sql");
+		reader = new Scanner(file);
+		while (reader.hasNextLine()) {
+			stmt = conn.createStatement();
+			stmt.execute(reader.nextLine());
+		}
+		file = new File("sql/flight_seats.sql");
+		reader = new Scanner(file);
+		while (reader.hasNextLine()) {
+			stmt = conn.createStatement();
+			stmt.execute(reader.nextLine());
+		}
+		file = new File("sql/user_bookings.sql");
+		reader = new Scanner(file);
+		while (reader.hasNextLine()) {
+			stmt = conn.createStatement();
+			stmt.execute(reader.nextLine());
+		}
+		} catch(SQLException | FileNotFoundException ex) {
 		}
 	}
-	*/
 
 	public static void insertAccount(String username, String password) {
 		try {
