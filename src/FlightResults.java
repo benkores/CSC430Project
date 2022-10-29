@@ -9,8 +9,8 @@ public class FlightResults {
 	private String return_date;
 	private ArrayList<ArrayList<String>> flights;
 	private ArrayList<ArrayList<String>> flights_return;
-	private ArrayList<String> first_flight = new ArrayList<String>();
-	private ArrayList<String> second_flight = new ArrayList<String>();
+	private ArrayList<String> first_flight;
+	private ArrayList<String> second_flight;
 
 	public FlightResults(String from_airport, String to_airport, String departure_date) {
 		this.from_airport = from_airport;
@@ -36,6 +36,7 @@ public class FlightResults {
 		} else {
 			System.out.println("Select first flight: ");
 			first_flight = selectFlight(flights);
+			new BookFlight(first_flight);
 		}
 	}
 	
@@ -47,6 +48,7 @@ public class FlightResults {
 			first_flight = selectFlight(flights);
 			System.out.println("Select second flight: ");
 			second_flight = selectFlight(flights_return);
+			new BookFlight(first_flight,second_flight);
 		}
 	}
 
@@ -60,23 +62,25 @@ public class FlightResults {
 			ArrayList<String> flight = new ArrayList<String>();
 			int i = 0;
 			while (i < flights.size()) {
-				System.out.println("\nFlight " + (i + 1));
-				System.out.println(flights.get(i).get(0) + " ---> " + flights.get(i).get(1));
-				System.out.println("Departs: " + flights.get(i).get(2) + " " + flights.get(i).get(3));
-				System.out.println("Arrives: " + flights.get(i).get(4) + " " + flights.get(i).get(5));
-				System.out.println("Gate: " + flights.get(i).get(6));
-				System.out.println("Terminal: " + flights.get(i).get(7));
-				System.out.println("Boarding begins: " + flights.get(i).get(8));
-				System.out.println("Boarding ends: " + flights.get(i).get(9));
+				System.out.println("Option " + (i+1));
+				System.out.println("--------------------");
+				System.out.println("\nFlight ID " + flights.get(i).get(0));
+				System.out.println(flights.get(i).get(1) + " ---> " + flights.get(i).get(2));
+				System.out.println("Departs: " + flights.get(i).get(3) + " " + flights.get(i).get(4));
+				System.out.println("Arrives: " + flights.get(i).get(5) + " " + flights.get(i).get(6));
+				System.out.println("Gate: " + flights.get(i).get(7));
+				System.out.println("Terminal: " + flights.get(i).get(8));
+				System.out.println("Boarding begins: " + flights.get(i).get(9));
+				System.out.println("Boarding ends: " + flights.get(i).get(10));
 				System.out.println(
-						"Number of seats: " + flights.get(i).get(10) + " first-class seats, " + flights.get(i).get(11)
-								+ " business-class seats, " + flights.get(i).get(12) + " economy seats");
-				System.out.println("First-class ticket price: $" + flights.get(i).get(13));
-				System.out.println("Business-class ticket price: $" + flights.get(i).get(14));
-				System.out.println("Economy ticket price: $" + flights.get(i).get(15));
+						"Number of seats: " + flights.get(i).get(11) + " first-class seats, " + flights.get(i).get(12)
+								+ " business-class seats, " + flights.get(i).get(13) + " economy seats");
+				System.out.println("First-class ticket price: $" + flights.get(i).get(14));
+				System.out.println("Business-class ticket price: $" + flights.get(i).get(15));
+				System.out.println("Economy ticket price: $" + flights.get(i).get(16));
 				i++;
 			}
-			System.out.println("Enter a flight option(1-" + i + "): ");
+			System.out.print("Enter flight option(1-" + i + "): ");
 			flight_option = stdin.nextInt() - 1;
 			flight.add(flights.get(flight_option).get(0));
 			flight.add(flights.get(flight_option).get(1));
@@ -94,6 +98,7 @@ public class FlightResults {
 			flight.add(flights.get(flight_option).get(13));
 			flight.add(flights.get(flight_option).get(14));
 			flight.add(flights.get(flight_option).get(15));
+			flight.add(flights.get(flight_option).get(16));
 			return flight;
 		}
 	}

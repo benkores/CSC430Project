@@ -1,6 +1,6 @@
 CREATE TABLE FLIGHTS (
 	id int PRIMARY KEY NOT NULL,
-	destination_id varchar(255) REFERENCES AIRPORTS(id),
+	departure_id varchar(255) REFERENCES AIRPORTS(id),
 	arrival_id varchar(255) REFERENCES AIRPORTS(id),
 	departure_date Date,
 	departure_time Time,
@@ -13,9 +13,9 @@ CREATE TABLE FLIGHTS (
 	number_of_first_class_seats int,
 	number_of_business_class_seats int,
 	number_of_economy_seats int,
-	first_cost int,
-	business_cost int,
-	economy_cost int
+	first_cost double,
+	business_cost double,
+	economy_cost double
 );
 
 INSERT INTO FLIGHTS VALUES(1, 'ATL', 'LAX', '2022-11-01', '09:00', '2022-11-01', '12:00', 'B9', 1, '08:15','08:45', 60, 60, 60, 1000, 500, 200);

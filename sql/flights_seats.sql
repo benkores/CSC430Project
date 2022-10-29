@@ -1,6 +1,6 @@
 CREATE TABLE FLIGHT_SEATS (
 	flight_id int REFERENCES FLIGHTS(id) NOT NULL,
-	id int PRIMARY KEY,
+	id int,
 	seat_type varchar(255) NOT NULL,
 	seat varchar(255),
 	seat_booked boolean
