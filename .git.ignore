@@ -1,4 +1,5 @@
-**/bin
 login_username.txt
-**/my_database
+my_database
 derby.log
+.classpath
+.project
