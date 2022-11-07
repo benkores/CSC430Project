@@ -14,8 +14,7 @@ public class Menu extends javax.swing.JPanel {
     /**
      * Creates new form Menu
      */
-    public Menu(String username) {
-    	this.username = username;
+    public Menu() {
         initComponents();
     }
 
@@ -93,8 +92,14 @@ public class Menu extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
-
+    // </editor-fold>//GEN-END:initComponents
+    	
+    java.awt.EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			new Menu().setVisible(true);
+		}
+	});
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
