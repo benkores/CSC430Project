@@ -29,7 +29,6 @@ public class Login_Form extends javax.swing.JFrame {
 
 	private String username;
 	private String password;
-	private static boolean show_window = false;
 
 	public Login_Form() {
 		initComponents();
@@ -161,7 +160,6 @@ public class Login_Form extends javax.swing.JFrame {
 		boolean valid = SQLConnect.authenticateAccount(username, password);
 		if (!(valid)) {
 			System.err.println("Incorrect username/password!");
-			show_window = true;
 			dispose();
 		}
 		try {
@@ -170,16 +168,12 @@ public class Login_Form extends javax.swing.JFrame {
 			FileWriter writer = new FileWriter("login_username.txt");
 			writer.write(username);
 			writer.close();
-			show_window = false;
 			dispose();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static boolean getShowWindow() {
-		return show_window;
-	}
 	
 	private void registerActionPerformed(java.awt.event.ActionEvent evt) {
 	}

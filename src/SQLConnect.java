@@ -27,7 +27,8 @@ public class SQLConnect {
 
 	private static void createConnection() {
 		try {
-			Runtime.getRuntime().exec("cmd /c start /min java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
+			Runtime.getRuntime()
+					.exec("cmd /c start /min java -jar \"Apache\\derbyrun.jar\" server start -noSecurityManager");
 			TimeUnit.SECONDS.sleep(2);
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			conn = DriverManager.getConnection(dbURL);
@@ -35,40 +36,52 @@ public class SQLConnect {
 			except.printStackTrace();
 		}
 	}
-	
+
 	public static void executeSQLScripts() {
+		File file;
+		Scanner reader;
 		try {
-		File file = new File("sql/accounts.sql");
-		Scanner reader = new Scanner(file);
-		while (reader.hasNextLine()) {
-			stmt = conn.createStatement();
-			stmt.execute(reader.nextLine());
-		}
-		file = new File("sql/airports.sql");
-		reader = new Scanner(file);
-		while (reader.hasNextLine()) {
-			stmt = conn.createStatement();
-			stmt.execute(reader.nextLine());
-		}
-		file = new File("sql/flights.sql");
-		reader = new Scanner(file);
-		while (reader.hasNextLine()) {
-			stmt = conn.createStatement();
-			stmt.execute(reader.nextLine());
-		}
-		file = new File("sql/flight_seats.sql");
-		reader = new Scanner(file);
-		while (reader.hasNextLine()) {
-			stmt = conn.createStatement();
-			stmt.execute(reader.nextLine());
-		}
-		file = new File("sql/user_bookings.sql");
-		reader = new Scanner(file);
-		while (reader.hasNextLine()) {
-			stmt = conn.createStatement();
-			stmt.execute(reader.nextLine());
-		}
-		} catch(SQLException | FileNotFoundException ex) {
+		/* For testing purposes only
+			file = new File("sql/drop.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+			*/
+			file = new File("sql/accounts.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+			file = new File("sql/airports.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+			file = new File("sql/flights.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+			file = new File("sql/flight_seats.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+			file = new File("sql/user_bookings.sql");
+			reader = new Scanner(file);
+			while (reader.hasNextLine()) {
+				stmt = conn.createStatement();
+				stmt.execute(reader.nextLine());
+			}
+		} catch (SQLException ex) {
+		} catch (FileNotFoundException ex) {
+			ex.printStackTrace();
 		}
 	}
 
@@ -247,8 +260,8 @@ public class SQLConnect {
 		int seat_id = 0;
 		try {
 			stmt = conn.createStatement();
-			results = stmt
-					.executeQuery("SELECT ID FROM FLIGHT_SEATS WHERE FLIGHT_ID=" + flight_id + " AND SEAT='" + seat + "'");
+			results = stmt.executeQuery(
+					"SELECT ID FROM FLIGHT_SEATS WHERE FLIGHT_ID=" + flight_id + " AND SEAT='" + seat + "'");
 			while (results.next()) {
 				seat_id = results.getInt("id");
 			}
@@ -337,12 +350,13 @@ public class SQLConnect {
 		int booking_id = getNextID("USER_BOOKINGS");
 		try {
 			stmt = conn.createStatement();
-			stmt.execute("INSERT INTO USER_BOOKINGS VALUES(" + account_id + "," + booking_id + "," + flight_id + "," + seat_id + ",'" + first_name + "','" + last_name + "','" + person_type + "')");
+			stmt.execute("INSERT INTO USER_BOOKINGS VALUES(" + account_id + "," + booking_id + "," + flight_id + ","
+					+ seat_id + ",'" + first_name + "','" + last_name + "','" + person_type + "')");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	public static ArrayList<ArrayList<String>> getUserBookings() {
 		int account_id = getAccountID();
 		ArrayList<ArrayList<String>> bookings = new ArrayList<ArrayList<String>>();
@@ -353,14 +367,14 @@ public class SQLConnect {
 			while (results.next()) {
 				booking = new ArrayList<String>();
 				booking.add(String.valueOf(results.getInt("flight_id")));
-				String from_airport = getStringFromFlights(Integer.parseInt(booking.get(0)),"departure_id");
+				String from_airport = getStringFromFlights(Integer.parseInt(booking.get(0)), "departure_id");
 				booking.add(from_airport);
-				String to_airport = getStringFromFlights(Integer.parseInt(booking.get(0)),"arrival_id");
+				String to_airport = getStringFromFlights(Integer.parseInt(booking.get(0)), "arrival_id");
 				booking.add(to_airport);
 				booking.add(results.getString("first_name"));
 				booking.add(results.getString("last_name"));
 				booking.add(results.getString("person_type"));
-				String gate = getStringFromFlights(Integer.parseInt(booking.get(0)),"gate");
+				String gate = getStringFromFlights(Integer.parseInt(booking.get(0)), "gate");
 				booking.add(gate);
 				int terminal = getIntFromFlights(Integer.parseInt(booking.get(0)), "terminal");
 				booking.add(String.valueOf(terminal));
@@ -368,7 +382,8 @@ public class SQLConnect {
 				booking.add(start_boarding);
 				String end_boarding = getStringFromFlights(Integer.parseInt(booking.get(0)), "boarding_ends");
 				booking.add(end_boarding);
-				String seat_type = getStringFromFlightSeats("seat_type", Integer.parseInt(booking.get(0)), Integer.parseInt(results.getString("flight_seats_id")));
+				String seat_type = getStringFromFlightSeats("seat_type", Integer.parseInt(booking.get(0)),
+						Integer.parseInt(results.getString("flight_seats_id")));
 				if (seat_type.equals("first")) {
 					booking.add("1");
 				} else if (seat_type.equals("business")) {
@@ -376,7 +391,8 @@ public class SQLConnect {
 				} else {
 					booking.add("3");
 				}
-				String seat = getStringFromFlightSeats("seat",Integer.parseInt(booking.get(0)), Integer.parseInt(results.getString("flight_seats_id")));
+				String seat = getStringFromFlightSeats("seat", Integer.parseInt(booking.get(0)),
+						Integer.parseInt(results.getString("flight_seats_id")));
 				booking.add(seat);
 				bookings.add(booking);
 			}
@@ -386,7 +402,7 @@ public class SQLConnect {
 		}
 		return bookings;
 	}
-	
+
 	public static String getStringFromFlights(int flight_id, String column) {
 		ResultSet results = null;
 		String result = null;
@@ -402,7 +418,7 @@ public class SQLConnect {
 		}
 		return result;
 	}
-	
+
 	public static int getIntFromFlights(int flight_id, String column) {
 		ResultSet results = null;
 		int result = 0;
@@ -418,13 +434,14 @@ public class SQLConnect {
 		}
 		return result;
 	}
-	
+
 	public static String getStringFromFlightSeats(String column, int flight_id, int seat_id) {
 		ResultSet results = null;
 		String result = null;
 		try {
 			stmt = conn.createStatement();
-			results = stmt.executeQuery("SELECT " + column + " FROM FLIGHT_SEATS WHERE FLIGHT_ID=" + flight_id + " AND ID=" + seat_id);
+			results = stmt.executeQuery(
+					"SELECT " + column + " FROM FLIGHT_SEATS WHERE FLIGHT_ID=" + flight_id + " AND ID=" + seat_id);
 			while (results.next()) {
 				result = results.getString(column);
 			}

@@ -27,6 +27,9 @@ public class BoardingPass {
 		list.setFont(new Font("Arial", Font.BOLD, 30));
 		scrollPane.setViewportView(list);
 		int i = 0;
+		if (bookings.size() == 0) {
+			list.add("No boarding passes found");
+		} else {
 		while (i < bookings.size()) {
 			list.add("---------------------------------------------------------------------------");
 			list.add("                             Boarding Pass #" + (i+1));
@@ -44,6 +47,7 @@ public class BoardingPass {
 			list.add("Seat: " + bookings.get(i).get(11));
 			list.add("\n");
 			i++;
+		}
 		}
 		panel.add(scrollPane);
 		frame.setVisible(true);
