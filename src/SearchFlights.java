@@ -1,5 +1,12 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.awt.Font;
 public class SearchFlights {
 	
 	private ArrayList<ArrayList<String>> from_airports = new ArrayList<ArrayList<String>>();
